@@ -67,6 +67,7 @@ class Account extends ApiResource
 
     const PATH_EXTERNAL_ACCOUNTS = '/external_accounts';
     const PATH_LOGIN_LINKS = '/login_links';
+    const PATH_PERSONS = '/persons';
 
     public function instanceUrl()
     {
@@ -195,6 +196,69 @@ class Account extends ApiResource
     public static function createLoginLink($id, $params = null, $opts = null)
     {
         return self::_createNestedResource($id, static::PATH_LOGIN_LINKS, $params, $opts);
+    }
+
+    /**
+     * @param array|null $id The ID of the account on which to create the person.
+     * @param array|null $params
+     * @param array|string|null $opts
+     *
+     * @return Person
+     */
+    public static function createPerson($id, $params = null, $opts = null)
+    {
+        return self::_createNestedResource($id, static::PATH_PERSONS, $params, $opts);
+    }
+
+    /**
+     * @param array|null $id The ID of the account to which the person belongs.
+     * @param array|null $personId The ID of the person to retrieve.
+     * @param array|null $params
+     * @param array|string|null $opts
+     *
+     * @return Person
+     */
+    public static function retrievePerson($id, $personId, $params = null, $opts = null)
+    {
+        return self::_retrieveNestedResource($id, static::PATH_PERSONS, $personId, $params, $opts);
+    }
+
+    /**
+     * @param array|null $id The ID of the account to which the person belongs.
+     * @param array|null $personId The ID of the person to update.
+     * @param array|null $params
+     * @param array|string|null $opts
+     *
+     * @return Person
+     */
+    public static function updatePerson($id, $personId, $params = null, $opts = null)
+    {
+        return self::_updateNestedResource($id, static::PATH_PERSONS, $personId, $params, $opts);
+    }
+
+    /**
+     * @param array|null $id The ID of the account to which the person belongs.
+     * @param array|null $personId The ID of the person to delete.
+     * @param array|null $params
+     * @param array|string|null $opts
+     *
+     * @return Person
+     */
+    public static function deletePerson($id, $personId, $params = null, $opts = null)
+    {
+        return self::_deleteNestedResource($id, static::PATH_PERSONS, $personId, $params, $opts);
+    }
+
+    /**
+     * @param array|null $id The ID of the account on which to retrieve the persons.
+     * @param array|null $params
+     * @param array|string|null $opts
+     *
+     * @return Person
+     */
+    public static function allPersons($id, $params = null, $opts = null)
+    {
+        return self::_allNestedResources($id, static::PATH_PERSONS, $params, $opts);
     }
 
     public function serializeParameters($force = false)
